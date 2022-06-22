@@ -1,0 +1,153 @@
+\documentclass[12pt,a4paper]{scrartcl} 
+\usepackage[utf8]{inputenc}
+\usepackage[english,russian]{babel}
+\usepackage{indentfirst}
+\usepackage{misccorr}
+\usepackage{graphicx}
+\usepackage{amsmath}
+\begin{document}
+	\begin{titlepage}
+		\begin{center}
+			\large
+			МИНИСТЕРСТВО НАУКИ И ВЫСШЕГО ОБРАЗОВАНИЯ РОССИЙСКОЙ ФЕДЕРАЦИИ
+			
+			Федеральное государственное бюджетное образовательное учреждение высшего образования
+			
+			\textbf{АДЫГЕЙСКИЙ ГОСУДАРСТВЕННЫЙ УНИВЕРСИТЕТ}
+			\vspace{0.25cm}
+			
+			Инженерно-физический факультет
+			
+			Кафедра управления и информатики в технических системах
+			\vfill
+			
+			\vfill
+			
+			\textsc{Отчет по практике}\\[5mm]
+			
+			{\LARGE Программаная реализация численного метода \textit{Интерполировать функцию, используя многочлен Лагранжа 
+		}}
+			\bigskip
+			
+			1 курс, группа 1ИВТ
+		\end{center}
+		\vfill
+		
+		\newlength{\ML}
+		\settowidth{\ML}{«\underline{\hspace{0.7cm}}» \underline{\hspace{2cm}}}
+		\hfill\begin{minipage}{0.5\textwidth}
+			Выполнил:\\
+			\underline{\hspace{\ML}} И.\,А.~Шатский\\
+			«\underline{\hspace{0.7cm}}» \underline{\hspace{2cm}} 2022 г.
+		\end{minipage}%
+		\bigskip
+		
+		\hfill\begin{minipage}{0.5\textwidth}
+			Руководитель:\\
+			\underline{\hspace{\ML}} С.\,В.~Теплоухов\\
+			«\underline{\hspace{0.7cm}}» \underline{\hspace{2cm}} 2022 г.
+		\end{minipage}%
+		\vfill
+		
+		\begin{center}
+			Майкоп, 2022 г.
+		\end{center}
+	\end{titlepage}
+
+	\section{Введение}
+	\label{sec:intro}
+	
+	% Что должно быть во введении
+	\begin{enumerate}
+		\item Текстовая формулировка задачи
+		\item Пример кода, решающего данную задачу
+		\item График
+		\item Скриншот программы
+	\end{enumerate}
+	
+	Пример приведен в пункте ~\ref{sec:exp} на стр.~\pageref{sec:exp}.
+	
+	\section{Ход работы}
+	\label{sec:exp}
+	
+	\subsection{Код приложения}
+	\label{sec:exp:code}
+	\begin{verbatim}
+		public partial class Form1 : Form
+    {
+        public Form1()
+        {
+            InitializeComponent();
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            chart1.Series[0].Points.Clear();
+            string Str = textBox1.Text.Trim();
+            int NumPoints;
+            bool isNum = int.TryParse(Str, out NumPoints);
+            if (!isNum)
+            {
+                return;
+            }
+            var xValues = new double[NumPoints];
+            var yValues = new double[NumPoints];
+            var Rand = new Random();
+            for (int i = 0; i < NumPoints; i++)
+            {
+                xValues[i] = i;
+                yValues[i] = Rand.Next(NumPoints+1);
+            }
+            for (int i = 0; i < NumPoints; i++)
+            {
+                chart1.Series[0].Points.AddXY(xValues[i],
+                LagrangeInterpolation(xValues, yValues, i));
+            }
+        }
+  public static double LagrangeInterpolation(double[] x, double[] y, double xval)
+        {
+           double yval = 0.0;
+           double Products = y[0];
+           for (int i = 0; i < x.Length; i++)
+            {
+               Products = y[i];
+            for (int j = 0; j < x.Length; j++)
+                {
+                    if (i != j)
+                    {
+                        Products *= (xval - x[j]) / (x[i] - x[j]);
+                    }
+                }
+                yval += Products;
+            }
+            return yval;
+        }
+    }
+	    }
+	    
+	\end{verbatim}
+	
+	\subsection{Пример формулы}
+	\label{sec:mathexample}
+	
+	Интерполяционный многочлен Лагранжа:
+	\begin{equation}\label{eq:solv}
+	$L(x) = \sum_{i=0}^n (f(a_i) \prod_{j\neq i,j=0}^n \frac{x-a_j}{a_i-a_j} )$
+		
+	
+\section{Пример вставки изображения}
+\begin{figure}[h]
+	\centering
+	\includegraphics[width=0.4\textwidth]{142.png}
+	\caption{Работа программы}\label{fig:par}
+\end{figure}
+	
+	\section{Пример библиографических ссылок}
+    http://geo.phys.spbu.ru/LDUS/files/books/LaTeX/LaTeX-Lvovsky.pdf
+	
+	\begin{thebibliography}{9}
+		\bibitem{Knuth-2003}Кнут Д.Э. Всё про \TeX. \newblock --- Москва: Изд. Вильямс, 2003 г. 550~с.
+		\bibitem{Lvovsky-2003}Львовский С.М. Набор и верстка в системе \LaTeX{}. \newblock --- 3-е издание, исправленное и дополненное, 2003 г.
+		\bibitem{Voroncov-2005}Воронцов К.В. \LaTeX{} в примерах. 2005 г.
+	\end{thebibliography}
+\end{document}
