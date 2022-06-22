@@ -1,0 +1,11 @@
+C:\Users\larionov\source\repos\Lagrange\bin\Release\Lagrange.exe.config
+C:\Users\larionov\source\repos\Lagrange\bin\Release\Lagrange.exe
+C:\Users\larionov\source\repos\Lagrange\bin\Release\Lagrange.pdb
+C:\Users\larionov\source\repos\Lagrange\obj\Release\Lagrange.csproj.AssemblyReference.cache
+C:\Users\larionov\source\repos\Lagrange\obj\Release\Lagrange.csproj.SuggestedBindingRedirects.cache
+C:\Users\larionov\source\repos\Lagrange\obj\Release\Lagrange.Form1.resources
+C:\Users\larionov\source\repos\Lagrange\obj\Release\Lagrange.Properties.Resources.resources
+C:\Users\larionov\source\repos\Lagrange\obj\Release\Lagrange.csproj.GenerateResource.cache
+C:\Users\larionov\source\repos\Lagrange\obj\Release\Lagrange.csproj.CoreCompileInputs.cache
+C:\Users\larionov\source\repos\Lagrange\obj\Release\Lagrange.exe
+C:\Users\larionov\source\repos\Lagrange\obj\Release\Lagrange.pdb
